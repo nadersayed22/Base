@@ -47,21 +47,23 @@ namespace Base.Service.Services
 			hajjOfficeService.Update(Entity);
 		}
 
-		public void SaveEnitiy()
+        public void Delete(HajjOffice hajjOffice)
+        {
+            var entity = hajjOfficeService.GetById(hajjOffice.ID);
+            if (entity != null)
+            {
+                hajjOfficeService.Delete(entity);
+
+                SaveEnitiy();
+            }
+        }
+
+        public void SaveEnitiy()
         {
             unitOfWork.Commit();
         }
 
-        public void Delete(int id)
-        {
-            var entity = hajjOfficeService.GetById(id);
-            if (entity != null)
-            {
-                hajjOfficeService.Delete(entity);
-                
-               SaveEnitiy();
-            }
-        }
+ 
         #endregion
     }
 }

@@ -33,10 +33,11 @@
         </dd>
     </dl>
 
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("Delete", "HajjOffice", FormMethod.Post)) // Specify action and controller
     {
         @Html.AntiForgeryToken()
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-@Html.ActionLink("Cancel", "Index");
-}
+        <input type="hidden" name="id" value="@Model.ID" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> 
+        @Html.ActionLink("Cancel", "Index", "HajjOffice") 
+    }
 </div>
