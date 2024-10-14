@@ -5,42 +5,88 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 <h2>مكاتب الخدمة</h2>
 
-@*<p>
-        @Html.ActionLink("Create New Hajj Office", "Create")
-    </p>*@
-@Html.ActionLink("Create New Hajj Office", "Create", null, new { @class = "btn btn-primary" })
-
-<table class="table">
+<div class="text-right mb-3">
+    @Html.ActionLink("انشاء مكتب خدمة", "Create", null, new { @class = "btn btn-primary", @style = "display: inline-flex; align-items: center;" })
+    <i class="fas fa-plus ml-2"></i> <!-- Font Awesome icon -->
+</div>
+<table class="table table-bordered">
     <thead>
-    <tr>
-        <th>ID</th>
-        <th>Office Name</th>
-        <th>Office Phone</th>
-        <th>Representative Name</th>
-        <th></th>
-    </tr>
+        <tr>
+            <th>رقم المسلسل</th>
+            <th>مكتب الخدمة</th>
+            <th>هاتف المكتب </th>
+            <th>المسؤل</th>
+            <th>اجراء</th>
+        </tr>
     </thead>
     <tbody>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.ID</td>
-            <td>@item.OfficeName</td>
-            <td>@item.OfficePhone</td>
-            <td>@item.Representative?.Name</td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })|
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#officeReqModal">
-                    Create Office Request
-                </button>
-            </td>
-        </tr>
-    }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ID</td>
+                <td>@item.OfficeName</td>
+                <td>@item.OfficePhone</td>
+                <td>@item.Representative?.Name</td>
+                <td>
+                    <a href="@Url.Action("Edit", new { id = item.ID })" class="btn btn-sm btn-warning" title="تعديل">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a href="@Url.Action("Details", new { id = item.ID })" class="btn btn-sm btn-info" title="عرض">
+                        <i class="fas fa-info-circle"></i>
+                    </a>
+                    <a href="@Url.Action("Delete", new { id = item.ID })" class="btn btn-sm btn-danger" title="حذف" onclick="return confirm('هل انت متأكد من الحذف');">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#officeReqModal" onclick="loadOfficeReqForm(@item.ID)">
+                        ربط طلب
+                    </button>
+                </td>
+            </tr>
+        }
     </tbody>
-
 </table>
+
+<div class="modal fade" id="officeReqModal" tabindex="-1" role="dialog" aria-labelledby="officeReqModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="officeReqModalLabel">انشاء طلب للمكتب</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-body-content">
+                <!-- Partial view content will be loaded here -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">أغلاق</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        function loadOfficeReqForm(officeId) {
+            $.ajax({
+                url: '@Url.Action("CreateOfficeReq", "HajjOffice")', // Adjust the URL to match your routing
+                type: 'GET',
+                data: { id: officeId }, // Send officeId to the server if needed
+                success: function (data) {
+                    $('#modal-body-content').html(data); // Load the partial view into the modal body
+                },
+                error: function () {
+                    alert('Failed to load the form.');
+                }
+            });
+        }
+    </script>
+}
+

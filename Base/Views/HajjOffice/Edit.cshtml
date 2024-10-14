@@ -1,55 +1,53 @@
 ﻿@model Base.Model1.HajjOffice
 
 @{
-    ViewBag.Title = "Edit Hajj Office";
+    ViewBag.Title = "تعديل مكتب خدمة";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>تعديل مكتب خدمة</h2>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">تعديل مكتب خدمة</h2>
 
-@using (Html.BeginForm())
-{
+    @using (Html.BeginForm())
+    {
+        <div class="form-horizontal">
+            <h4 class="mb-3">تفاصيل المكتب</h4>
+            <hr />
 
-    <div class="form-horizontal">
-        <h4>Hajj Office</h4>
-        <hr />
+            <!-- Office Name Field -->
+            <div class="form-group row">
+                @Html.LabelFor(model => model.OfficeName, "اسم المكتب", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.OfficeName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.OfficeName, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-        <!-- Office Name Field -->
-        <div class="form-group">
-            @Html.LabelFor(model => model.OfficeName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.OfficeName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.OfficeName, "", new { @class = "text-danger" })
+            <!-- Office Phone Field -->
+            <div class="form-group row">
+                @Html.LabelFor(model => model.OfficePhone, "رقم الهاتف", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.OfficePhone, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.OfficePhone, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <!-- Office Representative Dropdown -->
+            <div class="form-group row">
+                @Html.LabelFor(model => model.OfficeRepresentativeID, "المسؤول", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("OfficeRepresentativeID", ViewBag.RepresentativeList as SelectList, "حدد المسؤول", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.OfficeRepresentativeID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group row">
+                <div class="col-md-12 d-flex justify-content-end">
+                    <input type="submit" value="حفظ" class="btn btn-primary btn-lg mr-2" />
+                    @Html.ActionLink("العودة", "Index", null, new { @class = "btn btn-secondary btn-lg" })
+                </div>
             </div>
         </div>
-
-        <!-- Office Phone Field -->
-        <div class="form-group">
-            @Html.LabelFor(model => model.OfficePhone, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.OfficePhone, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.OfficePhone, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <!-- Office Representative Dropdown -->
-        <div class="form-group">
-            @Html.LabelFor(model => model.OfficeRepresentativeID, "Representative", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("OfficeRepresentativeID", ViewBag.RepresentativeList as SelectList, "Select Representative", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.OfficeRepresentativeID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <!-- Submit Button -->
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </div>
-    </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
+    }
 </div>

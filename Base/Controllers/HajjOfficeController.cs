@@ -137,24 +137,55 @@ namespace Base.Controllers
 
             return View("Index", filteredHajjOffices);
         }
-      
-      
+        [HttpGet]
+        public ActionResult CreateOfficeReq()
+        {
+            // Fetch the dropdown data for Hajj offices and requests
+            ViewBag.HajjOffices = new SelectList(_hajjOfficeService.GetEntities(), "ID", "OfficeName");
+            ViewBag.HajjRequests = new SelectList(_hajjReqService.GetEntities(), "ID", "Name");
+
+            // Return the empty OfficeReq object to be filled in the form
+            return PartialView("OfficeRequest", new OfficeReq());
+        }
+
         [HttpPost]
         public ActionResult CreateOfficeReq(OfficeReq officeReq)
         {
             if (ModelState.IsValid)
             {
-                _fficeReqService.CreateEntity(officeReq); // Create the new OfficeReq
-                _fficeReqService.SaveEnitiy(); // Save changes to the database
-                return RedirectToAction("Index"); // Redirect to the Index page after successful creation
+                _fficeReqService.CreateEntity(officeReq);  // Create the new OfficeReq
+                _fficeReqService.SaveEnitiy();  // Save changes to the database
+                return Json(new { success = true });  // Return success response
             }
 
-            // If ModelState is invalid, repopulate the dropdowns
-            ViewBag.HajjRequests = new SelectList(_hajjReqService.GetEntities(), "ID", "RequestName");
-            ViewBag.HajjOffice = new SelectList(_hajjOfficeService.GetEntities(), "ID", "OfficeName");
+            // Repopulate dropdowns for validation failure scenarios
+            ViewBag.HajjRequests = new SelectList(_hajjReqService.GetEntities(), "ID", "Name");
+            ViewBag.HajjOffices = new SelectList(_hajjOfficeService.GetEntities(), "ID", "OfficeName");
 
-            return View("Index"); // Return to the Index view with the model state errors
+            // Return partial view with validation errors
+            return PartialView("OfficeRequest", officeReq);
         }
+
+
+        //[HttpPost]
+        //public ActionResult CreateOfficeReq(OfficeReq officeReq)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _fficeReqService.CreateEntity(officeReq); // Create the new OfficeReq
+        //        _fficeReqService.SaveEnitiy(); // Save changes to the database
+
+        //        // Return success as a JSON response (for AJAX submission)
+        //        return Json(new { success = true });
+        //    }
+
+        //    // If ModelState is invalid, repopulate the dropdowns for the partial view
+        //    ViewBag.HajjRequests = new SelectList(_hajjReqService.GetEntities(), "ID", "RequestName");
+        //    ViewBag.HajjOffice = new SelectList(_hajjOfficeService.GetEntities(), "ID", "OfficeName");
+
+        //    // Return partial view with validation errors (for AJAX submission)
+        //    return PartialView("OfficeRequest", officeReq);
+        //}
 
 
     }

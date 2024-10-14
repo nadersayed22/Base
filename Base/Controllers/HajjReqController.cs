@@ -1,6 +1,7 @@
 ﻿using Base.Controllers;
 using Base.Model1;
 using Base.Service.Interfaces;
+using Base.Service.Services;
 using System.Web.Mvc;
 
 public class HajjReqController : BaseController
@@ -25,9 +26,9 @@ public class HajjReqController : BaseController
         return View();
     }
 
+  
     // POST: HajjReq/Create
     [HttpPost]
-    [ValidateAntiForgeryToken] // Important to prevent CSRF attacks
     public ActionResult Create(HajjReq hajjReq)
     {
         if (ModelState.IsValid)

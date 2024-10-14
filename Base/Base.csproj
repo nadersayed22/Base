@@ -674,6 +674,7 @@
     <Content Include="Views\HajjReq\Details.cshtml" />
     <Content Include="Views\HajjReq\Delete.cshtml" />
     <Content Include="Views\HajjReq\Index.cshtml" />
+    <Content Include="Views\HajjOffice\OfficeRequest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

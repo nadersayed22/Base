@@ -1,43 +1,72 @@
 ﻿@model Base.Model1.HajjOffice
 
 @{
-    ViewBag.Title = "Delete Hajj Office";
+    ViewBag.Title = "حذف مكتب خدمة";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
 }
 
-<h2>حذف مكتب خدمة</h2>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">حذف مكتب خدمة</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>HajjOffice</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.OfficeName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.OfficeName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.OfficePhone)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.OfficePhone)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Representative.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Representative.Name)
-        </dd>
-    </dl>
+    <h3 class="text-danger">هل أنت متأكد أنك تريد حذف هذا المكتب؟</h3>
 
-    @using (Html.BeginForm("Delete", "HajjOffice", FormMethod.Post)) // Specify action and controller
-    {
-        @Html.AntiForgeryToken()
-        <input type="hidden" name="id" value="@Model.ID" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> 
-        @Html.ActionLink("Cancel", "Index", "HajjOffice") 
-    }
+    <div class="card">
+        <div class="card-header">
+            <h4>تفاصيل المكتب</h4>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-md-3">المكتب</dt>
+                <dd class="col-md-9">@Html.DisplayFor(model => model.OfficeName)</dd>
+
+                <dt class="col-md-3">الهاتف</dt>
+                <dd class="col-md-9">@Html.DisplayFor(model => model.OfficePhone)</dd>
+
+                <dt class="col-md-3">المسؤول</dt>
+                <dd class="col-md-9">@Html.DisplayFor(model => model.Representative.Name)</dd>
+            </dl>
+
+            <div class="text-right">
+                <button id="deleteButton" class="btn btn-danger">حذف</button>
+                @Html.ActionLink("إلغاء", "Index", "HajjOffice", null, new { @class = "btn btn-secondary" })
+            </div>
+        </div>
+    </div>
 </div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.getElementById('deleteButton').onclick = function (event) {
+            event.preventDefault(); // Prevent the default action
+
+            // SweetAlert2 confirmation dialog
+            Swal.fire({
+                title: 'هل أنت متأكد؟',
+                text: "هذا سيؤدي إلى حذف المكتب بشكل دائم!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'نعم، احذفها!',
+                cancelButtonText: 'إلغاء'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // If confirmed, submit the form
+                    const form = document.createElement('form');
+                    form.method = 'post';
+                    form.action = '@Url.Action("Delete", "HajjOffice")'; // Specify the action URL
+
+                    const hiddenInput = document.createElement('input');
+                    hiddenInput.type = 'hidden';
+                    hiddenInput.name = 'id';
+                    hiddenInput.value = '@Model.ID'; // Use the model ID
+
+                    form.appendChild(hiddenInput);
+                    document.body.appendChild(form);
+                    form.submit();
+                }
+            });
+        };
+    </script>
+}
