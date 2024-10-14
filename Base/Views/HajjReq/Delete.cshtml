@@ -13,7 +13,6 @@
     </div>
     @using (Html.BeginForm())
     {
-        @Html.AntiForgeryToken()
         <input type="hidden" name="id" value="@Model.ID" />
         <input type="submit" value="Delete" class="btn btn-danger" />
         @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })

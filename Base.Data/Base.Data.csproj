@@ -57,6 +57,7 @@
     <Compile Include="Configurations\HajjOfficeConfiguration.cs" />
     <Compile Include="Configurations\OfficeReqConfiguration.cs" />
     <Compile Include="Configurations\UserConfiguration.cs" />
+    <Compile Include="HajjOfficeViewModel.cs" />
     <Compile Include="Infrastructure\DbFactory.cs" />
     <Compile Include="Infrastructure\Disposable.cs" />
     <Compile Include="Infrastructure\IDbFactory.cs" />

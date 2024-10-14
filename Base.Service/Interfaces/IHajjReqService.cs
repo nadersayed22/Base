@@ -7,12 +7,13 @@ using System.Linq.Expressions;
 namespace Base.Service.Interfaces
 {
     public interface IHajjReqService
-	{
+    {
         IEnumerable<HajjReq> GetEntities();
-		HajjReq GetEntity(int id);
+        HajjReq GetEntity(int id);
         void CreateEntity(HajjReq Entity);
         void SaveEnitiy();
-		IEnumerable<HajjReq> Getmany(Expression<Func<HajjReq, bool>> where);
-		void Update(HajjReq Entity);
-	}
+        IEnumerable<HajjReq> Getmany(Expression<Func<HajjReq, bool>> where);
+        void Update(HajjReq Entity);
+        void Delete(HajjReq hajjOffice);
+    }
 }

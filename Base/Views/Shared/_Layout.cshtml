@@ -104,7 +104,7 @@
 
                         <!-- BEGIN: Horizontal Menu -->
                         <button class="m-aside-header-menu-mobile-close  m-aside-header-menu-mobile-close--skin-dark " id="m_aside_header_menu_mobile_close_btn"><i class="la la-close"></i></button>
-                        <div id="m_header_menu" class="m-header-menu m-aside-header-menu-mobile m-aside-header-menu-mobile--offcanvas  m-header-menu--skin-dark m-header-menu--submenu-skin-light m-aside-header-menu-mobile--skin-dark m-aside-header-menu-mobile--submenu-skin-dark ">
+                        @*<div id="m_header_menu" class="m-header-menu m-aside-header-menu-mobile m-aside-header-menu-mobile--offcanvas  m-header-menu--skin-dark m-header-menu--submenu-skin-light m-aside-header-menu-mobile--skin-dark m-aside-header-menu-mobile--submenu-skin-dark ">
                             <ul class="m-menu__nav ">
                                 <li class="m-menu__item  m-menu__item--submenu m-menu__item--rel" m-menu-submenu-toggle="click" m-menu-link-redirect="1" aria-haspopup="true">
                                     <a href="javascript:;" class="m-menu__link m-menu__toggle" title="Non functional dummy link">
@@ -353,7 +353,7 @@
                                     </div>
                                 </li>
                             </ul>
-                        </div>
+                        </div>*@
 
                         <!-- END: Horizontal Menu -->
                         <!-- BEGIN: Topbar -->
@@ -658,7 +658,9 @@
 
         <!-- END: Header -->
 
-        @RenderBody();
+    <div class="container">
+        @RenderBody() <!-- This should be the only RenderBody call in the layout -->
+    </div>
 
         <!-- begin::Footer -->
         @*<footer class="m-grid__item		m-footer ">
@@ -707,7 +709,7 @@
 
     <!-- end:: Page -->
     <!-- begin::Quick Sidebar -->
-    <div id="m_quick_sidebar" class="m-quick-sidebar m-quick-sidebar--tabbed m-quick-sidebar--skin-light">
+    @*<div id="m_quick_sidebar" class="m-quick-sidebar m-quick-sidebar--tabbed m-quick-sidebar--skin-light">
         <div class="m-quick-sidebar__content m--hide">
             <span id="m_quick_sidebar_close" class="m-quick-sidebar__close"><i class="la la-close"></i></span>
             <ul id="m_quick_sidebar_tabs" class="nav nav-tabs m-tabs m-tabs-line m-tabs-line--brand" role="tablist">
@@ -1158,7 +1160,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>*@
 
     <!-- end::Quick Sidebar -->
     <!-- begin::Scroll Top -->
@@ -1198,8 +1200,8 @@
 
 <!-- end::Body -->
 
-@*<body>
-        <div class="navbar navbar-inverse navbar-fixed-top">
+<body>
+        @*<div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -1217,17 +1219,16 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div>*@
         <div class="container body-content">
-            @RenderBody()
             <hr />
             <footer>
-                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                <p>&copy; @DateTime.Now.Year - أذواق الحجاز</p>
             </footer>
         </div>
 
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
         @RenderSection("scripts", required: false)
-    </body>*@
+    </body>
 </html>

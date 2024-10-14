@@ -1,7 +1,6 @@
 ﻿using Base.Controllers;
 using Base.Model1;
 using Base.Service.Interfaces;
-using Base.Service.Services;
 using System.Web.Mvc;
 
 public class HajjReqController : BaseController
@@ -16,7 +15,7 @@ public class HajjReqController : BaseController
     // GET: HajjReq
     public ActionResult Index()
     {
-        var hajjReqs = _hajjReqService.GetEntities();
+        var hajjReqs = _hajjReqService.GetEntities(); // Fetch all entities
         return View(hajjReqs);
     }
 
@@ -28,17 +27,17 @@ public class HajjReqController : BaseController
 
     // POST: HajjReq/Create
     [HttpPost]
-    [ValidateAntiForgeryToken]
+    [ValidateAntiForgeryToken] // Important to prevent CSRF attacks
     public ActionResult Create(HajjReq hajjReq)
     {
         if (ModelState.IsValid)
         {
             _hajjReqService.CreateEntity(hajjReq);
-            _hajjReqService.SaveEnitiy(); // Save changes
+            _hajjReqService.SaveEnitiy(); // Ensure method name is consistent
             return RedirectToAction("Index");
         }
 
-        return View(hajjReq);
+        return View(hajjReq); // Return the model with validation errors
     }
 
     // GET: HajjReq/Edit/5
@@ -55,17 +54,17 @@ public class HajjReqController : BaseController
 
     // POST: HajjReq/Edit/5
     [HttpPost]
-    [ValidateAntiForgeryToken]
+    [ValidateAntiForgeryToken] // Important to prevent CSRF attacks
     public ActionResult Edit(HajjReq hajjReq)
     {
         if (ModelState.IsValid)
         {
             _hajjReqService.Update(hajjReq);
-            _hajjReqService.SaveEnitiy(); // Save changes
+            _hajjReqService.SaveEnitiy(); // Ensure method name is consistent
             return RedirectToAction("Index");
         }
 
-        return View(hajjReq);
+        return View(hajjReq); // Return the model with validation errors
     }
 
     // GET: HajjReq/Delete/5
@@ -77,24 +76,25 @@ public class HajjReqController : BaseController
             return HttpNotFound();
         }
 
-        return View(hajjReq);
+        return View(hajjReq); // Pass the entity to the view for confirmation
     }
 
     // POST: HajjReq/Delete/5
     [HttpPost, ActionName("Delete")]
-    [ValidateAntiForgeryToken]
+    [ValidateAntiForgeryToken] // Important to prevent CSRF attacks
     public ActionResult DeleteConfirmed(int id)
     {
         var hajjReq = _hajjReqService.GetEntity(id);
         if (hajjReq != null)
         {
-            _hajjReqService.Update(hajjReq); // Update if any status change before deleting
-            _hajjReqService.SaveEnitiy();
+            _hajjReqService.Delete(hajjReq); // Use a delete method if available
+            _hajjReqService.SaveEnitiy(); // Ensure method name is consistent
         }
 
         return RedirectToAction("Index");
     }
 
+    // GET: HajjReq/Details/5
     public ActionResult Details(int id)
     {
         var hajjReq = _hajjReqService.GetEntity(id);
@@ -102,6 +102,6 @@ public class HajjReqController : BaseController
         {
             return HttpNotFound();
         }
-        return View(hajjReq);
+        return View(hajjReq); // Return the entity to the details view
     }
 }

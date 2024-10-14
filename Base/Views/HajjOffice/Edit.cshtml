@@ -3,20 +3,18 @@
 @{
     ViewBag.Title = "Edit Hajj Office";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
 }
 
 <h2>تعديل مكتب خدمة</h2>
 
-
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
         <h4>Hajj Office</h4>
         <hr />
 
+        <!-- Office Name Field -->
         <div class="form-group">
             @Html.LabelFor(model => model.OfficeName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -25,6 +23,7 @@
             </div>
         </div>
 
+        <!-- Office Phone Field -->
         <div class="form-group">
             @Html.LabelFor(model => model.OfficePhone, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -33,14 +32,16 @@
             </div>
         </div>
 
+        <!-- Office Representative Dropdown -->
         <div class="form-group">
             @Html.LabelFor(model => model.OfficeRepresentativeID, "Representative", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("OfficeRepresentativeID", null, "Select Representative", new { @class = "form-control" })
+                @Html.DropDownList("OfficeRepresentativeID", ViewBag.RepresentativeList as SelectList, "Select Representative", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.OfficeRepresentativeID, "", new { @class = "text-danger" })
             </div>
         </div>
 
+        <!-- Submit Button -->
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-primary" />

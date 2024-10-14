@@ -47,7 +47,19 @@ namespace Base.Service.Services
 			hajjReqRepository.Update(Entity);
 		}
 
-		public void SaveEnitiy()
+      
+        public void Delete(HajjReq hajjOffice)
+        {
+            var entity = hajjReqRepository.GetById(hajjOffice.ID);
+            if (entity != null)
+            {
+                hajjReqRepository.Delete(entity);
+
+                SaveEnitiy();
+            }
+        }
+
+        public void SaveEnitiy()
         {
             unitOfWork.Commit();
         }

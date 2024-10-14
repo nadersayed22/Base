@@ -10,11 +10,13 @@
 
 @using (Html.BeginForm()) 
 {
-    @Html.AntiForgeryToken()
+    @*@Html.AntiForgeryToken()*@
     
     <div class="form-horizontal">
         <h4>Hajj Office</h4>
         <hr />
+        @*@Html.AntiForgeryToken()*@ <!-- Add this line -->
+
         
         <div class="form-group">
             @Html.LabelFor(model => model.OfficeName, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -35,8 +37,9 @@
         <div class="form-group">
             @Html.LabelFor(model => model.OfficeRepresentativeID, "Representative", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("OfficeRepresentativeID", null, "Select Representative", new { @class = "form-control" })
+                @Html.DropDownList("OfficeRepresentativeID", ViewBag.RepresentativeList as SelectList, "Select Representative", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.OfficeRepresentativeID, "", new { @class = "text-danger" })
+
             </div>
         </div>
 

@@ -15,28 +15,32 @@
 
 <table class="table">
     <thead>
-        <tr>
-            <th>ID</th>
-            <th>Office Name</th>
-            <th>Office Phone</th>
-            <th>Representative Name</th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>ID</th>
+        <th>Office Name</th>
+        <th>Office Phone</th>
+        <th>Representative Name</th>
+        <th></th>
+    </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.ID</td>
-                <td>@item.OfficeName</td>
-                <td>@item.OfficePhone</td>
-                <td>@item.Representative?.Name</td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                </td>
-            </tr>
-        }
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ID</td>
+            <td>@item.OfficeName</td>
+            <td>@item.OfficePhone</td>
+            <td>@item.Representative?.Name</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })|
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#officeReqModal">
+                    Create Office Request
+                </button>
+            </td>
+        </tr>
+    }
     </tbody>
+
 </table>

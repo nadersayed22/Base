@@ -4,6 +4,7 @@ using Base.Model1;
 using Base.Service.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Runtime.Remoting.Contexts;
 
@@ -29,9 +30,11 @@ namespace Base.Service.Services
 
         public IEnumerable<HajjOffice>  GetEntities()
         {
-            return hajjOfficeService.GetAll();
+            return  hajjOfficeService.GetAll();
+           
         }
 
+     
         public HajjOffice GetEntity(int id)
         {
             return hajjOfficeService.GetById(id);
