@@ -1,0 +1,36 @@
+﻿@using System.Security.Policy
+@using System.Web.Mvc
+@model Base.Model1.HajjReq
+   
+
+@{
+    ViewBag.Title = "HajjReq Details";
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+}
+
+<h2> عرض طلب</h2>
+
+<div>
+    <h4>HajjReq</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <a href="@Url.Action("Edit", "HajjReq", new { id = Model.ID })" class="btn btn-primary">Edit</a>
+    @Html.ActionLink("Back to List", "Index", "HajjReq", null, new { @class = "btn btn-secondary" })
+</div>

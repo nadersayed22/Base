@@ -195,6 +195,7 @@
     <Compile Include="Controllers\AccountController .cs" />
     <Compile Include="Controllers\BaseController .cs" />
     <Compile Include="Controllers\HajjOfficeController.cs" />
+    <Compile Include="Controllers\HajjReqController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -668,6 +669,11 @@
     <Content Include="Views\HajjOffice\Edit.cshtml" />
     <Content Include="Views\HajjOffice\Delete.cshtml" />
     <Content Include="Views\HajjOffice\Details.cshtml" />
+    <Content Include="Views\HajjReq\Create.cshtml" />
+    <Content Include="Views\HajjReq\Edit.cshtml" />
+    <Content Include="Views\HajjReq\Details.cshtml" />
+    <Content Include="Views\HajjReq\Delete.cshtml" />
+    <Content Include="Views\HajjReq\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

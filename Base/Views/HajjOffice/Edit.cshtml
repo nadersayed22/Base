@@ -2,18 +2,21 @@
 
 @{
     ViewBag.Title = "Edit Hajj Office";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
-<h2>Edit Hajj Office</h2>
+<h2>تعديل مكتب خدمة</h2>
 
-@using (Html.BeginForm()) 
+
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Hajj Office</h4>
         <hr />
-        
+
         <div class="form-group">
             @Html.LabelFor(model => model.OfficeName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">

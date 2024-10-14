@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Base.Model1.HajjReq>
+
+@*<h2>Hajj Requirements</h2>*@
+
+@{
+    ViewBag.Title = "Hajj Requirements";
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+}
+<h2>  الطلبات</h2>
+@Html.ActionLink("Create New Requirement", "Create", null, new { @class = "btn btn-primary" })
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var req in Model)
+        {
+            <tr>
+                <td>@req.Name</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = req.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = req.ID })
+                    @Html.ActionLink("Details", "Details", new { id = req.ID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
