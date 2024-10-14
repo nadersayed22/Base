@@ -1,0 +1,37 @@
+﻿@model Base.Model1.HajjOffice
+
+@{
+    ViewBag.Title = "Hajj Office Details";
+}
+
+<h2>Hajj Office Details</h2>
+
+<div>
+    <h4>HajjOffice</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.OfficeName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OfficeName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OfficePhone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OfficePhone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Representative.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Representative.Name)
+        </dd>
+    </dl>
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

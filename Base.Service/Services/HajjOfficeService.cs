@@ -5,6 +5,7 @@ using Base.Service.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Runtime.Remoting.Contexts;
 
 namespace Base.Service.Services
 {
@@ -51,6 +52,16 @@ namespace Base.Service.Services
             unitOfWork.Commit();
         }
 
+        public void Delete(int id)
+        {
+            var entity = hajjOfficeService.GetById(id);
+            if (entity != null)
+            {
+                hajjOfficeService.Delete(entity);
+                
+               SaveEnitiy();
+            }
+        }
         #endregion
     }
 }

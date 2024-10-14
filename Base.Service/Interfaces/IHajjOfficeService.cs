@@ -13,5 +13,6 @@ namespace Base.Service.Interfaces
         void SaveEnitiy();
 		IEnumerable<HajjOffice> Getmany(Expression<Func<HajjOffice, bool>> where);
 		void Update(HajjOffice Entity);
-	}
+        void Delete(HajjOffice hajjOffice);
+    }
 }
