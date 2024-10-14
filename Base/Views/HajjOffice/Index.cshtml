@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Base.Model1.HajjOffice>
+
+@{
+    ViewBag.Title = "Hajj Office List";
+}
+
+<h2>Hajj Office List</h2>
+
+<p>
+    @Html.ActionLink("Create New Hajj Office", "Create")
+</p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Office Name</th>
+        <th>Office Phone</th>
+        <th>Representative Name</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ID</td>
+            <td>@item.OfficeName</td>
+            <td>@item.OfficePhone</td>
+            <td>@item.Representative?.Name</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

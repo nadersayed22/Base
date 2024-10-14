@@ -1,0 +1,7 @@
+Wrong Email Address or Password.[10/12/2024]
+Foreign key 'FK_dbo.HajjOffice_dbo.Users_OfficeRepresentativeID' references invalid table 'dbo.Users'.
+Could not create constraint or index. See previous errors.
+
+Foreign key 'FK_dbo.HajjOffice_dbo.Users_OfficeRepresentativeID' references invalid table 'dbo.Users'.
+Could not create constraint or index. See previous errors.
+
