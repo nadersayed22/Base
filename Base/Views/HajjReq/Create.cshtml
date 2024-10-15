@@ -1,29 +1,35 @@
 ﻿@model Base.Model1.HajjReq
 
-
 @{
-    ViewBag.Title = "Create Hajj Requirement";
+    ViewBag.Title = "إنشاء طلب الحج";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2> أضافه طلب</h2>
 
-@using (Html.BeginForm())
-{
+<div class="container mt-5">
+    <h2 class="text-center mb-4">إضافة طلب</h2>
 
-    <div class="form-horizontal">
-        <h4>Hajj Requirement</h4>
-        <hr />
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+    @using (Html.BeginForm())
+    {
+        <div class="card shadow-lg border-0">
+            <div class="card-header bg-dark text-white">
+                <h4 class="text-center">بيانات الطلب</h4>
+            </div>
+            <div class="card-body">
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Name, "اسم الطلب", new { @class = "col-md-2 col-form-label text-right" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-10 offset-md-2 text-right">
+                        <input type="submit" value="حفظ" class="btn btn-success btn-lg px-5" />
+                        @Html.ActionLink("العودة", "Index", null, new { @class = "btn btn-secondary btn-lg px-5 ml-3" })
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </div>
-    </div>
-}
+    }
+</div>

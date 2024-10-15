@@ -4,17 +4,20 @@
     ViewBag.Title = "تفاصيل مكتب خدمة";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<br />
+<br />
+<br />
+<br />
+<br />
 <div class="container mt-5">
-    <h2 class="text-center mb-4">عرض مكتب خدمة</h2>
 
-    <div class="card">
-        <div class="card-header">
-            <h4>تفاصيل المكتب</h4>
+    <div class="card shadow-lg border-0">
+        <div class="card-header bg-dark text-white text-center">
+            <h4>عرض مكتب الخدمة</h4>
         </div>
         <div class="card-body">
             <dl class="row">
-                <dt class="col-md-3">المكتب</dt>
+                <dt class="col-md-3">أسم مكتب الخدمة</dt>
                 <dd class="col-md-9">@Html.DisplayFor(model => model.OfficeName)</dd>
 
                 <dt class="col-md-3">الهاتف</dt>
@@ -24,9 +27,10 @@
                 <dd class="col-md-9">@Html.DisplayFor(model => model.Representative.Name)</dd>
             </dl>
         </div>
+
         <div class="card-footer text-right">
-            @Html.ActionLink("تعديل", "Edit", new { id = Model.ID }, new { @class = "btn btn-primary" }) 
-            @Html.ActionLink("العودة إلى القائمة", "Index", null, new { @class = "btn btn-secondary" })
+            <a href="@Url.Action("Edit", "HajjOffice", new { id = Model.ID })" class="btn btn-success btn-lg px-4">تعديل</a>
+            @Html.ActionLink("العودة الى القائمة", "Index", "HajjOffice", null, new { @class = "btn btn-secondary btn-lg px-4 ml-3" })
         </div>
     </div>
 </div>

@@ -5,30 +5,24 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<br />
+<br />
+<br />
 <div class="container mt-5">
-    <h2 class="text-center mb-4">حذف مكتب خدمة</h2>
-
-    <h3 class="text-danger">هل أنت متأكد أنك تريد حذف هذا المكتب؟</h3>
-
-    <div class="card">
-        <div class="card-header">
-            <h4>تفاصيل المكتب</h4>
-        </div>
-        <div class="card-body">
-            <dl class="row">
-                <dt class="col-md-3">المكتب</dt>
-                <dd class="col-md-9">@Html.DisplayFor(model => model.OfficeName)</dd>
-
-                <dt class="col-md-3">الهاتف</dt>
-                <dd class="col-md-9">@Html.DisplayFor(model => model.OfficePhone)</dd>
-
-                <dt class="col-md-3">المسؤول</dt>
-                <dd class="col-md-9">@Html.DisplayFor(model => model.Representative.Name)</dd>
-            </dl>
-
-            <div class="text-right">
-                <button id="deleteButton" class="btn btn-danger">حذف</button>
-                @Html.ActionLink("إلغاء", "Index", "HajjOffice", null, new { @class = "btn btn-secondary" })
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-dark text-white">
+                    <h4 class="text-center">تأكيد الحذف</h4>
+                </div>
+                <div class="card-body text-center">
+                    <h5>هل أنت متأكد أنك تريد حذف هذا المكتب؟</h5>
+                    <h5 class="text-danger mt-3">@Model.OfficeName</h5>
+                </div>
+                <div class="card-footer text-right">
+                    <button id="deleteButton" class="btn btn-danger btn-lg px-4">حذف</button>
+                    @Html.ActionLink("إلغاء", "Index", null, new { @class = "btn btn-secondary btn-lg px-4 ml-3" })
+                </div>
             </div>
         </div>
     </div>

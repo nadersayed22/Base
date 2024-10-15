@@ -1,36 +1,37 @@
-﻿@using System.Security.Policy
-@using System.Web.Mvc
-@model Base.Model1.HajjReq
-   
+﻿@model Base.Model1.HajjReq
 
-@{
-    ViewBag.Title = "HajjReq Details";
-    Layout = "~/Views/Shared/_Layout.cshtml"; 
-}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">عرض طلب</h2>
 
-<h2> عرض طلب</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-6"> <!-- Restricts the width of the card -->
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-dark text-white">
+                    <h4 class="text-center">تفاصيل الطلب</h4>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-4 font-weight-bold text-right mb-3">
+                            @Html.DisplayNameFor(model => model.ID)
+                        </dt>
+                        <dd class="col-sm-8 mb-3">
+                            @Html.DisplayFor(model => model.ID)
+                        </dd>
 
-<div>
-    <h4>HajjReq</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ID)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ID)
-        </dd>
+                        <dt class="col-sm-4 font-weight-bold text-right mb-3">
+                            @Html.DisplayNameFor(model => model.Name)
+                        </dt>
+                        <dd class="col-sm-8 mb-3">
+                            @Html.DisplayFor(model => model.Name)
+                        </dd>
+                    </dl>
+                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-    </dl>
-</div>
-
-<div>
-    <a href="@Url.Action("Edit", "HajjReq", new { id = Model.ID })" class="btn btn-primary">Edit</a>
-    @Html.ActionLink("Back to List", "Index", "HajjReq", null, new { @class = "btn btn-secondary" })
+                <div class="card-footer text-right">
+                    <a href="@Url.Action("Edit", "HajjReq", new { id = Model.ID })" class="btn btn-success btn-lg px-4">تعديل</a>
+                    @Html.ActionLink("العودة الى القائمة", "Index", "HajjReq", null, new { @class = "btn btn-secondary btn-lg px-4 ml-3" })
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -55,7 +55,6 @@ public class HajjReqController : BaseController
 
     // POST: HajjReq/Edit/5
     [HttpPost]
-    [ValidateAntiForgeryToken] // Important to prevent CSRF attacks
     public ActionResult Edit(HajjReq hajjReq)
     {
         if (ModelState.IsValid)
@@ -82,7 +81,6 @@ public class HajjReqController : BaseController
 
     // POST: HajjReq/Delete/5
     [HttpPost, ActionName("Delete")]
-    [ValidateAntiForgeryToken] // Important to prevent CSRF attacks
     public ActionResult DeleteConfirmed(int id)
     {
         var hajjReq = _hajjReqService.GetEntity(id);

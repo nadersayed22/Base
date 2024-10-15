@@ -1,33 +1,64 @@
 ﻿@model IEnumerable<Base.Model1.HajjReq>
 
-@*<h2>Hajj Requirements</h2>*@
-<h2>  الطلبات</h2>
-
 @{
-    ViewBag.Title = "Hajj Requirements";
-    Layout = "~/Views/Shared/_Layout.cshtml"; 
+    ViewBag.Title = "الطلبات";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@Html.ActionLink("Create New Requirement", "Create", null, new { @class = "btn btn-primary" })
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var req in Model)
-        {
-            <tr>
-                <td>@req.Name</td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = req.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = req.ID })|
-                    @Html.ActionLink("Details", "Details", new { id = req.ID })
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="container mt-5">
+    <h2 class="text-center mb-4"></h2>
 
+    
+    
+    
+    <div class="container mt-5">
+        <h2 class="text-center mb-4"> قائمة الطلبات</h2>
+
+            <div class="text-right mb-3">
+                <a href="@Url.Action("Create", "HajjReq")" class="btn btn-primary btn-lg" style="display: inline-flex; align-items: center;" title="إضافة طلب جديد">
+                    <i class="fas fa-plus"></i>
+                </a>
+            </div>
+
+            <!-- Your card and table code here -->
+</div>
+
+    <!-- Make sure to include Font Awesome in your _Layout.cshtml or here -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <div class="card">
+        <div class="card-header">
+            <h4 class="text-center"> الطلبات</h4>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                <tr>
+                    <th class="text-center">الاسم</th>
+                    <th class="text-center">الإجراءات</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var req in Model)
+                {
+                    <tr>
+                        <td class="text-center">@req.Name</td>
+                        <td class="text-center">
+                           
+                            <a href="@Url.Action("Edit", new { id = req.ID })" class="btn btn-sm btn-warning" title="تعديل">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="@Url.Action("Details", new { id = req.ID })" class="btn btn-sm btn-info" title="عرض">
+                                <i class="fas fa-info-circle"></i>
+                            </a>
+                            <a href="@Url.Action("Delete", new { id = req.ID })" class="btn btn-sm btn-danger" title="حذف">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

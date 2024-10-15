@@ -1,85 +1,95 @@
 ﻿@model Base.Model1.OfficeReq
 
-<div class="container">
-    <h2 class="mt-4 mb-4">ربط طلب بمكتب خدمة </h2>
+@{
+    ViewBag.Title = "ربط طلب بمكتب خدمة";
+  
+}
+
+
     @using (Html.BeginForm("CreateOfficeReq", "HajjOffice", FormMethod.Post, new { @id = "officeRequestForm", @class = "form-horizontal", role = "form" }))
     {
-        <div class="form-group row">
-            @Html.LabelFor(model => model.officeID, "مكتب خدمة", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.officeID, ViewBag.HajjOffices as SelectList, "أختار", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.officeID, "", new { @class = "text-danger" })
+            <div class="card-header bg-dark text-white">
+                <h4 class="text-center">إضافة طلب لمكتب خدمة</h4>
             </div>
-        </div>
+            <div class="card-body">
 
-        <div class="form-group row">
-            @Html.LabelFor(model => model.reqID, "طلب حجاج", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.reqID, ViewBag.HajjRequests as SelectList, "أختار", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.reqID, "", new { @class = "text-danger" })
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.officeID, "مكتب خدمة", new { @class = "col-md-2 col-form-label text-right" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.officeID, ViewBag.HajjOffices as SelectList, "أختار", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.officeID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.reqID, "طلب حجاج", new { @class = "col-md-2 col-form-label text-right" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.reqID, ViewBag.HajjRequests as SelectList, "أختار", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.reqID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Amount, "القيمة المطلوبة", new { @class = "col-md-2 col-form-label text-right" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.Amount, new { @class = "form-control", type = "number", placeholder = "أدخل القيمة" })
+                        @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.ActualAmount, "القيمة الحقيقية", new { @class = "col-md-2 col-form-label text-right" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.ActualAmount, new { @class = "form-control", type = "number", placeholder = "أدخل القيمة الحقيقية" })
+                        @Html.ValidationMessageFor(model => model.ActualAmount, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.isBool, "نشط", new { @class = "col-md-2 col-form-label text-right" })
+                    <div class="col-md-10">
+                        @Html.CheckBoxFor(model => model.isBool, new { @class = "form-check-input" })
+                        <label class="form-check-label"></label>
+                        @Html.ValidationMessageFor(model => model.isBool, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row mt-4">
+                    <div class="col-md-10 offset-md-2 text-right">
+                        <button type="button" onclick="submitOfficeRequest()" class="btn btn-success btn-lg px-5">حفظ</button>
+                        <button type="button" class="btn btn-secondary btn-lg px-5 ml-3" data-dismiss="modal">إلغاء</button>
+                    </div>
+                </div>
+
             </div>
-        </div>
-
-        <div class="form-group row">
-            @Html.LabelFor(model => model.Amount,"القيمة المطلوبة", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Amount, new { @class = "form-control", type = "number", placeholder = "Enter Amount" })
-                @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group row">
-            @Html.LabelFor(model => model.ActualAmount, "القيمة الحقيقية", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.ActualAmount, new { @class = "form-control", type = "number", placeholder = "Enter Actual Amount" })
-                @Html.ValidationMessageFor(model => model.ActualAmount, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-
-        <div class="form-group row">
-            @Html.LabelFor(model => model.isBool, "نشط", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.CheckBoxFor(model => model.isBool, new { @class = "form-check-input" })
-                <label class="form-check-label">نشط</label>
-                @Html.ValidationMessageFor(model => model.isBool, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <div class="col-md-10 offset-md-2 text-right">
-                <button type="button" onclick="submitOfficeRequest()" class="btn btn-primary">حفظ</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">إلغاء</button>
-            </div>
-        </div>
-
     }
-</div>
 
-<script>
-    function submitOfficeRequest() {
-        var form = $('#officeRequestForm');  // Target the form element
-        var formData = form.serialize();     // Serialize form data
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function submitOfficeRequest() {
+            var form = $('#officeRequestForm');  // Target the form element
+            var formData = form.serialize();     // Serialize form data
 
-        $.ajax({
-            type: 'POST',
-            url: '@Url.Action("CreateOfficeReq", "HajjOffice")',  // Adjust the URL to match your routing
-            data: formData,
-            success: function (response) {
-                if (response.success) {
-                    // Success: Hide the modal, show success alert, and reload the page
-                    alert("Request saved successfully!");
-                    $('#officeReqModal').modal('hide');
-                    location.reload();  // Reload the page to refresh the list
-                } else {
-                    // Validation failed: Reload the partial view with validation messages
-                    $('#modal-body-content').html(response);
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("CreateOfficeReq", "HajjOffice")',  // Adjust the URL to match your routing
+                data: formData,
+                success: function (response) {
+                    if (response.success) {
+                        // Success: Hide the modal, show success alert, and reload the page
+                        alert("تم حفظ الطلب بنجاح!");
+                        $('#officeReqModal').modal('hide');
+                        location.reload();  // Reload the page to refresh the list
+                    } else {
+                        // Validation failed: Reload the partial view with validation messages
+                        $('#modal-body-content').html(response);
+                    }
+                },
+                error: function () {
+                    alert("حدث خطأ أثناء حفظ الطلب.");
                 }
-            },
-            error: function () {
-                alert("Error while saving request.");
-            }
-        });
-    }
-</script>
-
+            });
+        }
+    </script>
+}

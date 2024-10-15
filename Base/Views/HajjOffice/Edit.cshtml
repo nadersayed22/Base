@@ -5,48 +5,57 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<br />
+<br />
+<br />
+<br />
+
 <div class="container mt-5">
-    <h2 class="text-center mb-4">تعديل مكتب خدمة</h2>
+   
 
     @using (Html.BeginForm())
     {
-        <div class="form-horizontal">
-            <h4 class="mb-3">تفاصيل المكتب</h4>
-            <hr />
-
-            <!-- Office Name Field -->
-            <div class="form-group row">
-                @Html.LabelFor(model => model.OfficeName, "اسم المكتب", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.OfficeName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.OfficeName, "", new { @class = "text-danger" })
-                </div>
+        <div class="card shadow-lg border-0">
+            <div class="card-header bg-dark text-white">
+                <h4 class="text-center">تعديل مكتب الخدمة  </h4>
             </div>
+            <div class="card-body">
 
-            <!-- Office Phone Field -->
-            <div class="form-group row">
-                @Html.LabelFor(model => model.OfficePhone, "رقم الهاتف", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.OfficePhone, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.OfficePhone, "", new { @class = "text-danger" })
+                <!-- Office Name Field -->
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.OfficeName, "اسم المكتب", new { @class = "col-md-2 col-form-label text-right" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.OfficeName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.OfficeName, "", new { @class = "text-danger" })
+                    </div>
                 </div>
-            </div>
 
-            <!-- Office Representative Dropdown -->
-            <div class="form-group row">
-                @Html.LabelFor(model => model.OfficeRepresentativeID, "المسؤول", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("OfficeRepresentativeID", ViewBag.RepresentativeList as SelectList, "حدد المسؤول", new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.OfficeRepresentativeID, "", new { @class = "text-danger" })
+                <!-- Office Phone Field -->
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.OfficePhone, "رقم الهاتف", new { @class = "col-md-2 col-form-label text-right" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.OfficePhone, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.OfficePhone, "", new { @class = "text-danger" })
+                    </div>
                 </div>
-            </div>
 
-            <!-- Submit Button -->
-            <div class="form-group row">
-                <div class="col-md-12 d-flex justify-content-end">
-                    <input type="submit" value="حفظ" class="btn btn-primary btn-lg mr-2" />
-                    @Html.ActionLink("العودة", "Index", null, new { @class = "btn btn-secondary btn-lg" })
+                <!-- Office Representative Dropdown -->
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.OfficeRepresentativeID, "المسؤول", new { @class = "col-md-2 col-form-label text-right" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("OfficeRepresentativeID", ViewBag.RepresentativeList as SelectList, "حدد المسؤول", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.OfficeRepresentativeID, "", new { @class = "text-danger" })
+                    </div>
                 </div>
+
+                <!-- Submit Button -->
+                <div class="form-group row mt-4">
+                    <div class="col-md-10 offset-md-2 text-right">
+                        <input type="submit" value="حفظ" class="btn btn-success btn-lg px-5" />
+                        @Html.ActionLink("العودة", "Index", null, new { @class = "btn btn-secondary btn-lg px-5 ml-3" })
+                    </div>
+                </div>
+
             </div>
         </div>
     }
