@@ -197,6 +197,7 @@
     <Compile Include="Controllers\HajjOfficeController.cs" />
     <Compile Include="Controllers\HajjReqController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OfficeReqController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -675,6 +676,10 @@
     <Content Include="Views\HajjReq\Delete.cshtml" />
     <Content Include="Views\HajjReq\Index.cshtml" />
     <Content Include="Views\HajjOffice\OfficeRequest.cshtml" />
+    <Content Include="Views\OfficeReq\Index.cshtml" />
+    <Content Include="Views\OfficeReq\Edit.cshtml" />
+    <Content Include="Views\OfficeReq\Details.cshtml" />
+    <Content Include="Views\OfficeReq\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

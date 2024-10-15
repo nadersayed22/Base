@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Base.Model1;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace Base.Data.Infrastructure
     {
         #region Properties
         private BaseEntities dataContext;
-        private readonly IDbSet<T> dbSet;
+        public readonly IDbSet<T> dbSet;
 
         protected IDbFactory DbFactory
         {
@@ -74,6 +75,28 @@ namespace Base.Data.Infrastructure
         {
             return dbSet.Where(where).FirstOrDefault<T>();
         }
+
+        public virtual List<T> QueryableGetAll(Func<T, bool> filter = null, params string[] includeProperties)
+        {
+            IQueryable<T> query = dbSet;
+
+            
+            foreach (var includeProperty in includeProperties)
+            {
+                query = query.Include(includeProperty);
+            }
+
+           
+            if (filter != null)
+            {
+                query = query.AsEnumerable().Where(filter).AsQueryable(); 
+            }
+
+          
+            return query.ToList();
+        }
+
+
 
         #endregion
 

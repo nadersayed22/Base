@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Text;
 using Base.Model;
+using Base.Model1;
 
 namespace Base.Data
 {
@@ -19,6 +20,7 @@ namespace Base.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+           
             modelBuilder.Configurations.Add(new UserConfiguration());
             modelBuilder.Configurations.Add(new HajjOfficeConfiguration());
             modelBuilder.Configurations.Add(new HajjReqConfiguration());

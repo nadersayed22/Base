@@ -1,0 +1,49 @@
+﻿@model Base.Model1.OfficeReq
+
+@{
+    ViewBag.Title = "عرض المطلب";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">تفاصيل الطلب</h2>
+
+    <dl class="row">
+        <dt class="col-sm-2">
+            مكتب الخدمة
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.HajjOffice.OfficeName)
+        </dd>
+        <dt class="col-sm-2">
+            طلب الخدمة
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.HajjReq.Name)
+        </dd>
+        <dt class="col-sm-2">
+            الحالة
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.isBool)
+        </dd>
+        <dt class="col-sm-2">
+            المبلغ
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+        <dt class="col-sm-2">
+            المبلغ الفعلي
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ActualAmount)
+        </dd>
+    </dl>
+
+    <div class="text-center">
+        @Html.ActionLink("تحرير", "Edit", new { id = Model.ID }, new { @class = "btn btn-primary" })
+        @Html.ActionLink("رجوع إلى القائمة", "Index", null, new { @class = "btn btn-secondary" })
+    </div>
+</div>
+

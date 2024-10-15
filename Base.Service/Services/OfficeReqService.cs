@@ -4,6 +4,7 @@ using Base.Model1;
 using Base.Service.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 
 
@@ -21,6 +22,16 @@ namespace Base.Service.Services
         }
 
         #region IBaseService Members
+        public void Delete(OfficeReq hajjOfficeReq)
+        {
+            var entity = officeReqRepository.GetById(hajjOfficeReq.ID);
+            if (entity != null)
+            {
+                officeReqRepository.Delete(entity);
+
+                SaveEnitiy();
+            }
+        }
 
         public void CreateEntity(OfficeReq Entity)
         {
@@ -47,11 +58,17 @@ namespace Base.Service.Services
 			officeReqRepository.Update(Entity);
 		}
 
-		public void SaveEnitiy()
+
+        public void SaveEnitiy()
         {
             unitOfWork.Commit();
         }
 
+        public List<OfficeReq> GetAllOfficeReqs(params string[] includeProperties)
+        {
+            var x= officeReqRepository.QueryableGetAll(null,includeProperties);
+            return x;
+        }
         #endregion
     }
 }

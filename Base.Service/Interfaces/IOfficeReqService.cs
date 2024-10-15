@@ -14,5 +14,9 @@ namespace Base.Service.Interfaces
         void SaveEnitiy();
 		IEnumerable<OfficeReq> Getmany(Expression<Func<OfficeReq, bool>> where);
 		void Update(OfficeReq Entity);
-	}
+        List<OfficeReq> GetAllOfficeReqs(params string[] includeProperties);
+
+        void Delete(OfficeReq hajjOfficeReq);
+       
+    }
 }

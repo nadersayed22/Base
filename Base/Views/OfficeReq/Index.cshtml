@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Base.Model1.OfficeReq>
+
+@{
+    ViewBag.Title = "قائمة المتطلبات";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">قائمة المتطلبات</h2>
+
+   
+
+    <div class="card">
+        <div class="card-header">
+            <h4 class="text-center"> المتطلبات</h4>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="text-center">رقم الطلب</th>
+                        <th class="text-center">مكتب الخدمة</th>
+                        <th class="text-center">طلب الخدمة</th>
+                        <th class="text-center">المبلغ</th>
+                        <th class="text-center">المبلغ الفعلي</th>
+                        <th class="text-center">الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var req in Model)
+                    {
+                        <tr>
+                            <td class="text-center">@req.ID</td>
+                            <td class="text-center">@req.HajjOffice?.OfficeName</td>
+                            <td class="text-center">@req.HajjReq?.Name</td>
+                            <td class="text-center">@req.Amount</td>
+                            <td class="text-center">@req.ActualAmount</td>
+                            <td class="text-center">
+                                <a href="@Url.Action("Edit", new { id = req.ID })" class="btn btn-sm btn-warning mx-1" title="تعديل">تعديل</a>
+                                <a href="@Url.Action("Delete", new { id = req.ID })" class="btn btn-sm btn-danger mx-1" title="حذف">حذف</a>
+                                <a href="@Url.Action("Details", new { id = req.ID })" class="btn btn-sm btn-info mx-1" title="تفاصيل">تفاصيل</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
